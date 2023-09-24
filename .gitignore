@@ -1,0 +1,20 @@
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+# Env
+.vscode
+.env
+env
+# OS generated files #
+######################
+*.zip
+# Ignore all folders named "xxx" and their contents
+**/migrations/
+**/__pycache__/
+**/mediafiles/**
+**/htmlcov/**
+*.coverage
+# My files
