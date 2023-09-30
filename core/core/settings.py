@@ -37,15 +37,32 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'django.contrib.sites',
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
 
     'apps.v1.newsletter',
     'apps.v1.post',
 
 ]
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = "/"  # This will redirect to your homepage
+LOGOUT_REDIRECT_URL = "/bye"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='http'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,5 +158,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication'
-    ]
+    ],
+    "NON_FIELD_ERRORS_KEY": "error"
 }

@@ -19,9 +19,14 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from .views import test_loggedin, test_logout
+
 urlpatterns = [
     
     path('admin/', admin.site.urls),
+    
+    path("accounts/", include("allauth.urls")),
+    
     path('api-auth/', include('rest_framework.urls')),
     
     path('auth/', include('djoser.urls')),
@@ -29,5 +34,10 @@ urlpatterns = [
 
     path('api/v1/newsletter/', include('apps.v1.newsletter.urls'), name='newsletter'),
     path('api/v1/post/', include('apps.v1.post.urls'), name='post'),
+    # Test
+    path('', test_loggedin, name='login-page'),
+    path('bye/', test_logout, name='logout-page'),
+
+
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # For media files
